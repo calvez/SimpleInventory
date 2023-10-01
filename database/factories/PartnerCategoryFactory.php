@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class PartnerCategoryFactory extends Factory
 {
     protected $model = PartnerCategory::class;
+
     /**
      * Define the model's default state.
      *

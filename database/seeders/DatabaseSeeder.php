@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
                 StorageCategorySeeder::class,
                 StorageSeeder::class,
                 TransactionCategorySeeder::class,
-                TransactionSeeder::class
+                TransactionSeeder::class,
             ]
         );
     }

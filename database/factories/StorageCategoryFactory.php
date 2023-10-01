@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class StorageCategoryFactory extends Factory
 {
     protected $model = StorageCategory::class;
+
     /**
      * Define the model's default state.
      *

@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\StorageCategory;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class StorageCategorySeeder extends Seeder

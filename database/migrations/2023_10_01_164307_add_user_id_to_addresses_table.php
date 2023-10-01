@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 /**
  * Class AddUserIdToAddressesTable
@@ -12,10 +12,11 @@ class AddUserIdToAddressesTable extends Migration
     /**
      * Table names.
      *
-     * @var string  $table        The main table name for this migration.
-     * @var string  $table_users  The users table.
+     * @var string         The main table name for this migration.
+     * @var string   The users table.
      */
     protected $table;
+
     protected $table_users;
 
     /**
@@ -23,7 +24,7 @@ class AddUserIdToAddressesTable extends Migration
      */
     public function __construct()
     {
-        $this->table       = config('lecturize.addresses.table',   'addresses');
+        $this->table = config('lecturize.addresses.table', 'addresses');
         $this->table_users = config('lecturize.tables.users.main', 'users');
     }
 

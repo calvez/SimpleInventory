@@ -3,9 +3,9 @@
 namespace App\Models;
 
 use Database\Factories\StorageCategoryFactory;
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 class StorageCategory extends Model
 {
