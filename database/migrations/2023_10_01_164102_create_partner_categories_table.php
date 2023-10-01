@@ -16,6 +16,7 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 100)->nullable()->default(null);
+                $table->text('description')->nullable()->default(null);
                 $table->timestamps();
                 $table->softDeletes();
             }

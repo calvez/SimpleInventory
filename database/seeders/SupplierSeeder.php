@@ -2,16 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\Partner;
+use App\Models\Supplier;
 use Illuminate\Database\Seeder;
 
-class PartnerSeeder extends Seeder
+class SupplierSeeder extends Seeder
 {
+    /**
+     * Run the database seeds.
+     */
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Partner::factory()->count(25)->create();
+        Supplier::factory()->count(25)->create();
     }
 }

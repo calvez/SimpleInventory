@@ -14,7 +14,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "lecturize/laravel-addresses": "^1.3"
+        "lecturize/laravel-addresses": "^1.3",
+        "webpatser/laravel-countries": "^1.5"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",

@@ -20,7 +20,8 @@ class PartnerCategoryFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->word(),
+            'description' => fake()->sentence(5),
         ];
     }
 }

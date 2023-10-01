@@ -12,6 +12,6 @@ class PartnerCategorySeeder extends Seeder
      */
     public function run(): void
     {
-        PartnerCategory::factory()->count(5)->create();
+        PartnerCategory::factory()->count(9)->create();
     }
 }

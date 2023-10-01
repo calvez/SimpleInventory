@@ -20,7 +20,10 @@ class PartnerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => fake()->sentence(),
+            'description' => fake()->text(),
+            'message' => fake()->text(),
+            'partner_category' => fake()->randomDigitNot(0),
         ];
     }
 }

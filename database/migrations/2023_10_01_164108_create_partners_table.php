@@ -16,8 +16,14 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 100)->nullable()->default(null);
+                $table->text('description')->nullable()->default(null);
+                $table->text('message')->nullable()->default(null);
+                $table->unsignedBiginteger('partner_category')->nullable();
                 $table->timestamps();
                 $table->softDeletes();
+
+                $table->foreign('partner_category')->references('id')
+                    ->on('partner_categories')->onDelete('cascade');
             }
         );
     }
