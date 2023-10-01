@@ -19,6 +19,9 @@ return new class extends Migration
                 $table->text('description')->nullable()->default(null);
                 $table->text('message')->nullable()->default(null);
                 $table->unsignedBiginteger('partner_category')->nullable();
+                $table->string('bank_account', 32)->nullable()->default('text');
+                $table->string('vat_number', 100)->nullable()->default(null);
+                $table->string('eu_vat_number', 100)->nullable()->default(null);
                 $table->timestamps();
                 $table->softDeletes();
 

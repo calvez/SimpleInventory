@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(
             [
                 CountriesSeeder::class,
+                TaxSeeder::class,
                 PartnerCategorySeeder::class,
                 PartnerSeeder::class,
                 SupplierSeeder::class,

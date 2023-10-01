@@ -21,6 +21,9 @@ class Partner extends Model
         'description',
         'message',
         'partner_category',
+        'bank_account',
+        'vat_number',
+        'eu_vat_number',
     ];
 
     /**

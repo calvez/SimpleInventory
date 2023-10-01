@@ -24,6 +24,9 @@ class PartnerFactory extends Factory
             'description' => fake()->text(),
             'message' => fake()->text(),
             'partner_category' => fake()->randomDigitNot(0),
+            'bank_account' => fake()->bankAccountNumber(),
+            'vat_number' => fake()->randomNumber(5, true),
+            'eu_vat_number' => fake()->randomNumber(5, true),
         ];
     }
 }
