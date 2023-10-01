@@ -21,6 +21,7 @@ class SupplierFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'description' => fake()->text(),
         ];
     }
 }
