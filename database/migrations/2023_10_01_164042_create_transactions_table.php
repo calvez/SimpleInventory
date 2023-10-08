@@ -16,8 +16,11 @@ return new class extends Migration
             function (Blueprint $table) {
                 $table->id();
                 $table->string('name', 100)->nullable()->default(null);
+                $table->date('date_of_trans')->default(now());
+                $table->string('reference')->nullable()->default(null);
+                $table->string('type')->dafault('Kiadás');
+                $table->text('note')->nullable();
                 $table->timestamps();
-                $table->softDeletes();
             }
         );
     }
