@@ -18,7 +18,7 @@ return new class extends Migration
                 $table->string('name', 100)->nullable()->default(null);
                 $table->date('date_of_trans')->default(now());
                 $table->string('reference')->nullable()->default(null);
-                $table->string('type')->dafault('Kiadás');
+                $table->string('type')->default('Kiadás');
                 $table->text('note')->nullable();
                 $table->timestamps();
             }
