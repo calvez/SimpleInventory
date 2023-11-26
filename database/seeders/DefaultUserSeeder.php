@@ -21,7 +21,7 @@ class DefaultUserSeeder extends Seeder
                 'name' => 'Administrator',
                 'email' => 'super.admin@test.com',
                 'password' => Hash::make(12345678),
-                'is_active' => 1,
+                'email_verified_at' => now(),
             ]
         );
     }
