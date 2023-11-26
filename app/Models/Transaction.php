@@ -4,14 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Transaction extends Model
 {
     use HasFactory;
-
 
     protected $guarded = [];
 
@@ -24,7 +21,6 @@ class Transaction extends Model
     {
         return $this->hasMany(TransactionItem::class, 'transaction_id', 'id');
     }
-
 
     public static function boot()
     {

@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StorageResource\Pages;
-use App\Filament\Resources\StorageResource\RelationManagers;
 use App\Models\Storage;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class StorageResource extends Resource
 {
@@ -58,14 +55,14 @@ class StorageResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -73,5 +70,5 @@ class StorageResource extends Resource
             'create' => Pages\CreateStorage::route('/create'),
             'edit' => Pages\EditStorage::route('/{record}/edit'),
         ];
-    }    
+    }
 }

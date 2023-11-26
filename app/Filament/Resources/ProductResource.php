@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
-use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ProductResource extends Resource
 {
@@ -72,7 +69,7 @@ class ProductResource extends Resource
                                                 ->default('text'),
                                             Forms\Components\TextInput::make('vtsz')
                                                 ->maxLength(100)
-                                                ->default('text')
+                                                ->default('text'),
                                         ]
                                     )
                                     ->columns(2),
@@ -100,6 +97,7 @@ class ProductResource extends Resource
                 ]
             );
     }
+
     public static function table(Table $table): Table
     {
         return $table

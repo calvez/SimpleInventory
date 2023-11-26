@@ -19,8 +19,6 @@ class ProductCategory extends Model
 
     /**
      * Get all of the product for the ProductCategory
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function product(): HasMany
     {

@@ -3,18 +3,15 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionResource\Pages;
-use App\Filament\Resources\TransactionResource\RelationManagers;
 use App\Models\Product;
 use App\Models\Transaction;
 use Filament\Forms;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
-use Filament\Forms\Components\Select;
 
 class TransactionResource extends Resource
 {

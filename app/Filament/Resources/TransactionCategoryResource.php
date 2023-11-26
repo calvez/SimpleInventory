@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionCategoryResource\Pages;
-use App\Filament\Resources\TransactionCategoryResource\RelationManagers;
 use App\Models\TransactionCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class TransactionCategoryResource extends Resource
 {
@@ -58,14 +55,14 @@ class TransactionCategoryResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -73,5 +70,5 @@ class TransactionCategoryResource extends Resource
             'create' => Pages\CreateTransactionCategory::route('/create'),
             'edit' => Pages\EditTransactionCategory::route('/{record}/edit'),
         ];
-    }    
+    }
 }

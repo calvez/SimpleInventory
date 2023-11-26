@@ -3,15 +3,12 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PartnerResource\Pages;
-use App\Filament\Resources\PartnerResource\RelationManagers;
 use App\Models\Partner;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class PartnerResource extends Resource
 {
@@ -82,14 +79,14 @@ class PartnerResource extends Resource
                 ]),
             ]);
     }
-    
+
     public static function getRelations(): array
     {
         return [
             //
         ];
     }
-    
+
     public static function getPages(): array
     {
         return [
@@ -97,5 +94,5 @@ class PartnerResource extends Resource
             'create' => Pages\CreatePartner::route('/create'),
             'edit' => Pages\EditPartner::route('/{record}/edit'),
         ];
-    }    
+    }
 }
