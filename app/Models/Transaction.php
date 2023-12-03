@@ -12,7 +12,7 @@ class Transaction extends Model
 
     protected $fillable = [
         'reference',
-        'note'
+        'note',
     ];
 
     /**

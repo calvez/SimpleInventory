@@ -31,14 +31,15 @@ class TransactionResource extends Resource
         $lastq = DB::table('transactions')
             ->latest()
             ->first();
-        $last = (int)$lastq->id + 1;
+        $last = (int) $lastq->id + 1;
+
         return $form
             ->schema(
                 [
                     Forms\Components\TextInput::make('reference')
                         ->label('Azonosító')
                         ->maxLength(100)
-                        ->default('TRANS-' . date('Ymd') . '-' . $last),
+                        ->default('TRANS-'.date('Ymd').'-'.$last),
                     Forms\Components\DatePicker::make('date_of_trans')
                         ->label('Dátum')
                         ->default(now()),
