@@ -16,6 +16,16 @@ class StorageCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Raktár';
+
+    protected static ?string $pluralLabel = 'Raktár kategóriák';
+
+    protected static ?string $navigationLabel = 'Raktár kategóriák';
+
+    protected static ?string $slug = 'raktar-kategoriak';
+
+    protected static ?string $navigationGroup = 'Beállítások';
+
     public static function form(Form $form): Form
     {
         return $form

@@ -16,6 +16,14 @@ class TransactionCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Tranzakciók';
+
+    protected static ?string $pluralLabel = 'Tranzakció kategóriák';
+
+    protected static ?string $navigationLabel = 'Tranzakció kategóriák';
+
+    protected static ?string $navigationGroup = 'Beállítások';
+
     public static function form(Form $form): Form
     {
         return $form

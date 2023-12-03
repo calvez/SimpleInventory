@@ -20,7 +20,7 @@ class StorageFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
+            'name' => 'Raktár-'.fake()->numberBetween(1, 5),
         ];
     }
 }

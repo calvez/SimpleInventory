@@ -16,6 +16,14 @@ class StorageResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Raktár';
+
+    protected static ?string $pluralLabel = 'Raktárak';
+
+    protected static ?string $navigationLabel = 'Raktárak';
+
+    protected static ?string $slug = 'raktarak';
+
     public static function form(Form $form): Form
     {
         return $form

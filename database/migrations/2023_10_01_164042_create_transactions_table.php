@@ -20,6 +20,7 @@ return new class extends Migration
                 $table->string('reference')->nullable()->default(null);
                 $table->string('type')->default('Kiadás');
                 $table->text('note')->nullable();
+                $table->foreignId('storage_id')->nullable()->constrained();
                 $table->timestamps();
             }
         );

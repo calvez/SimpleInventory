@@ -16,6 +16,14 @@ class ProductCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Termékkategória';
+
+    protected static ?string $pluralLabel = 'Termékkategóriák';
+
+    protected static ?string $navigationLabel = 'Termékkategóriák';
+
+    protected static ?string $slug = 'termekkategoriak';
+
     public static function form(Form $form): Form
     {
         return $form

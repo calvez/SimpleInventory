@@ -16,6 +16,16 @@ class SupplierResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Beszállító';
+
+    protected static ?string $pluralLabel = 'Beszállítók';
+
+    protected static ?string $navigationLabel = 'Beszállítók';
+
+    protected static ?string $slug = 'beszallitok';
+
+    protected static ?string $navigationGroup = 'Beállítások';
+
     public static function form(Form $form): Form
     {
         return $form

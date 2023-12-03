@@ -16,6 +16,16 @@ class PartnerCategoryResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $navigationLabel = 'Partner kategóriák';
+
+    protected static ?string $label = 'Partner kategóriák';
+
+    protected static ?string $pluralLabel = 'Partner kategóriák';
+
+    protected static ?string $slug = 'partner-kategoriak';
+
+    protected static ?string $navigationGroup = 'Beállítások';
+
     public static function form(Form $form): Form
     {
         return $form

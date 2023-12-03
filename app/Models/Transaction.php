@@ -10,27 +10,16 @@ class Transaction extends Model
 {
     use HasFactory;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'reference',
+        'note'
+    ];
 
     /**
      * The items that belong to the Transaction
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function items(): HasMany
     {
         return $this->hasMany(TransactionItem::class, 'transaction_id', 'id');
-    }
-
-    public static function boot()
-    {
-        parent::boot();
-
-        static::creating(
-            function ($model) {
-                $number = Transaction::max('id') + 1;
-                $model->reference = make_reference_id('ADJ', $number);
-            }
-        );
     }
 }

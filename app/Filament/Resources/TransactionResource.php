@@ -12,6 +12,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
+use Illuminate\Support\Facades\DB;
 
 class TransactionResource extends Resource
 {
@@ -19,15 +20,30 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    protected static ?string $label = 'Tranzakció';
+
+    protected static ?string $pluralLabel = 'Tranzakciók';
+
+    protected static ?string $navigationLabel = 'Tranzakciók';
+
     public static function form(Form $form): Form
     {
+        $lastq = DB::table('transactions')
+            ->latest()
+            ->first();
+        $last = (int)$lastq->id + 1;
         return $form
             ->schema(
                 [
-                    // Forms\Components\TextInput::make('reference')->label('Azonosító')
-                    //     ->maxLength(100),
-                    Forms\Components\DatePicker::make('date_of_trans')->label('Dátum')->default(now()),
+                    Forms\Components\TextInput::make('reference')
+                        ->label('Azonosító')
+                        ->maxLength(100)
+                        ->default('TRANS-' . date('Ymd') . '-' . $last),
+                    Forms\Components\DatePicker::make('date_of_trans')
+                        ->label('Dátum')
+                        ->default(now()),
                     Forms\Components\TextInput::make('name')->label('megjegyzés')
+                        ->label('Megjegyzés')
                         ->maxLength(100),
                     Forms\Components\Select::make('type')->options(
                         [
@@ -41,9 +57,11 @@ class TransactionResource extends Resource
                             [
                                 Select::make('product_id')
                                     ->label('Termék')
-                                    ->options(Product::all()->pluck('name', 'id'))
+                                    ->options(Product::pluck('name', 'id'))
                                     ->searchable(),
-                                Forms\Components\TextInput::make('quantity')->label('Mennyiség')->numeric(),
+                                Forms\Components\TextInput::make('quantity')
+                                    ->label('Mennyiség')
+                                    ->numeric(),
                             ]
                         )
                         ->collapsible()
@@ -57,32 +75,33 @@ class TransactionResource extends Resource
         return $table
             ->columns(
                 [
-                    Tables\Columns\TextColumn::make('name')
+                    Tables\Columns\TextColumn::make('reference')
                         ->searchable(),
                     Tables\Columns\TextColumn::make('created_at')
                         ->dateTime()
-                        ->sortable()
-                        ->toggleable(isToggledHiddenByDefault: true),
-                    Tables\Columns\TextColumn::make('updated_at')
-                        ->dateTime()
-                        ->sortable()
-                        ->toggleable(isToggledHiddenByDefault: true),
-                    Tables\Columns\TextColumn::make('deleted_at')
-                        ->dateTime()
+                        ->label('Dátum')
                         ->sortable(),
                 ]
             )
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->filters(
+                [
+                    //
+                ]
+            )
+            ->actions(
+                [
+                    Tables\Actions\EditAction::make(),
+                ]
+            )
+            ->bulkActions(
+                [
+                    Tables\Actions\BulkActionGroup::make(
+                        [
+                            Tables\Actions\DeleteBulkAction::make(),
+                        ]
+                    ),
+                ]
+            );
     }
 
     public static function getRelations(): array

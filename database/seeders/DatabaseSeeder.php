@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
                 TransactionSeeder::class,
                 AddressSeeder::class,
                 ContactSeeder::class,
+                UserSeeder::class,
             ]
         );
     }

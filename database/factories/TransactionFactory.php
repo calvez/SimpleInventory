@@ -21,6 +21,8 @@ class TransactionFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'created_at' => now(),
+            'updated_at' => now(),
         ];
     }
 }
