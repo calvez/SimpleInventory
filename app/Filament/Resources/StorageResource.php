@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StorageResource\Pages;
 use App\Filament\Resources\StorageResource\RelationManagers\AddressesRelationManager;
+use App\Filament\Resources\StorageResource\RelationManagers\TransactionsRelationManager;
 use App\Models\Storage;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -28,44 +29,60 @@ class StorageResource extends Resource
     public static function form(Form $form): Form
     {
         return $form
-            ->schema([
-                Forms\Components\TextInput::make('name')->label('Név')
-                    ->maxLength(100),
-            ]);
+            ->schema(
+                [
+                    Forms\Components\TextInput::make('name')->label('Név')
+                        ->maxLength(100),
+                ]
+            );
     }
 
     public static function table(Table $table): Table
     {
         return $table
-            ->columns([
-                Tables\Columns\TextColumn::make('name')->label('Név')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')->label('Létrehozva')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('updated_at')
-                    ->dateTime()
-                    ->sortable()
-                    ->toggleable(isToggledHiddenByDefault: true),
-            ])
-            ->filters([
-                //
-            ])
-            ->actions([
-                Tables\Actions\EditAction::make(),
-            ])
-            ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
-                ]),
-            ]);
+            ->columns(
+                [
+                    Tables\Columns\TextColumn::make('name')->label('Név')
+                        ->searchable()
+                        ->description(fn (Storage $record): string => $record->getPrimaryAddress()->getHtml())
+                        ->html(),
+                    Tables\Columns\TextColumn::make('created_at')->label('Létrehozva')
+                        ->dateTime()
+                        ->sortable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                    Tables\Columns\TextColumn::make('updated_at')
+                        ->dateTime()
+                        ->sortable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                ]
+            )
+            ->filters(
+                [
+                    //
+                ]
+            )
+            ->actions(
+                [
+                    Tables\Actions\EditAction::make(),
+                ]
+            )
+            ->bulkActions(
+                [
+                    Tables\Actions\BulkActionGroup::make(
+                        [
+                            Tables\Actions\DeleteBulkAction::make(),
+                        ]
+                    ),
+                ]
+            );
     }
 
     public static function getRelations(): array
     {
         return [
+            TransactionsRelationManager::class,
             AddressesRelationManager::class,
+
             //RelationManagers\ProductsRelationManager::class,
 
         ];
@@ -76,6 +93,7 @@ class StorageResource extends Resource
         return [
             'index' => Pages\ListStorages::route('/'),
             'create' => Pages\CreateStorage::route('/create'),
+            'view' => Pages\ViewStorage::route('/{record}'),
             'edit' => Pages\EditStorage::route('/{record}/edit'),
         ];
     }

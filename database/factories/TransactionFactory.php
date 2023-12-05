@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Transaction;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Transaction>
@@ -21,6 +22,11 @@ class TransactionFactory extends Factory
     {
         return [
             'name' => fake()->name(),
+            'reference' => 'TRANS-' . date('Ymd') . '-' . Str::random(2),
+            'storage_from' => 1,
+            'storage_to' => 2,
+            'type' => 'in',
+            'note' => fake()->sentence(),
             'created_at' => now(),
             'updated_at' => now(),
         ];

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             [
                 DefaultUserSeeder::class,
                 CountriesSeeder::class,
+                AddressSeeder::class,
                 TaxSeeder::class,
                 PartnerCategorySeeder::class,
                 PartnerSeeder::class,
@@ -26,7 +27,6 @@ class DatabaseSeeder extends Seeder
                 StorageSeeder::class,
                 TransactionCategorySeeder::class,
                 TransactionSeeder::class,
-                AddressSeeder::class,
                 ContactSeeder::class,
                 UserSeeder::class,
             ]

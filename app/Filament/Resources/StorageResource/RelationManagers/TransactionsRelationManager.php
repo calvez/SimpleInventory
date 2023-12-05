@@ -25,18 +25,29 @@ class TransactionsRelationManager extends RelationManager
     public function table(Table $table): Table
     {
         return $table
-            ->recordTitleAttribute('transaction_id')
-            ->columns([
-                Tables\Columns\TextColumn::make('transaction_id'),
-            ])
+            ->recordTitleAttribute('reference')
+            ->columns(
+                [
+                    Tables\Columns\TextColumn::make('id')->sortable(),
+                    Tables\Columns\TextColumn::make('reference')->searchable()->label('Azonosító'),
+                    Tables\Columns\TextColumn::make('storage_from')->searchable()->label('Raktárból'),
+                    // IconColumn::make('type')
+                    //     ->icon(
+                    //         fn (string $state): string => match ($state) {
+                    //             'in' => 'heroicon-o-arrow-left',
+                    //             'out' => 'heroicon-o-arrow-right',
+                    //         }
+                    //     ),
+                    Tables\Columns\TextColumn::make('storage_to')->searchable()->label('Raktárba'),
+                    Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Dátum')->sortable(),
+                ]
+            )
             ->filters([
                 //
             ])
-            ->headerActions([
-                Tables\Actions\CreateAction::make(),
-            ])
+            ->headerActions([])
             ->actions([
-                Tables\Actions\EditAction::make(),
+
                 Tables\Actions\DeleteAction::make(),
             ])
             ->bulkActions([

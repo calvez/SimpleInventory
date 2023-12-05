@@ -21,8 +21,8 @@ class Storage extends Model
     /**
      * Get all of the transaction for the Storage
      */
-    public function transaction(): HasMany
+    public function transactions(): HasMany
     {
-        return $this->hasMany(Transaction::class);
+        return $this->hasMany(Transaction::class, 'storage_from', 'id');
     }
 }
