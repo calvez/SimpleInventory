@@ -17,4 +17,5 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-adminer.php
+public/adminer.php
+public/latest.php
