@@ -14,12 +14,11 @@ class StorageSeeder extends Seeder
     {
         //Storage::factory()->count(5)->create();
 
-
         $data = [
             'Veszprém',
             'Szombathely',
             'Tatabánya',
-            'Erdély'
+            'Erdély',
         ];
 
         foreach ($data as $key => $d) {
@@ -31,10 +30,10 @@ class StorageSeeder extends Seeder
             );
             $storage->addAddress(
                 [
-                    'street'     => 'Példa utca 123',
-                    'city'       => $d,
-                    'post_code'  => '1110',
-                    'country'    => 'HU', // ISO-3166-2 or ISO-3166-3 country code
+                    'street' => 'Példa utca 123',
+                    'city' => $d,
+                    'post_code' => '1110',
+                    'country' => 'HU', // ISO-3166-2 or ISO-3166-3 country code
                     'is_primary' => true, // optional flag
                 ]
             );

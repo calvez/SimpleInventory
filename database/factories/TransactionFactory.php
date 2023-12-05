@@ -22,7 +22,7 @@ class TransactionFactory extends Factory
     {
         return [
             'name' => fake()->name(),
-            'reference' => 'TRANS-' . date('Ymd') . '-' . Str::random(2),
+            'reference' => 'TRANS-'.date('Ymd').'-'.Str::random(2),
             'storage_from' => 1,
             'storage_to' => 2,
             'type' => 'in',
