@@ -15,13 +15,19 @@ return new class extends Migration
             'transactions',
             function (Blueprint $table) {
                 $table->id();
+                $table->unsignedBiginteger('storage_from')->nullable();
+                $table->unsignedBiginteger('storage_to')->nullable();
                 $table->string('name', 100)->nullable()->default(null);
                 $table->date('date_of_trans')->default(now());
                 $table->string('reference')->nullable()->default(null);
                 $table->string('type')->default('Kiadás');
                 $table->text('note')->nullable();
-                $table->foreignId('storage_id')->nullable()->constrained();
                 $table->timestamps();
+
+                $table->foreign('storage_from')->references('id')
+                    ->on('storages')->onDelete('cascade');
+                $table->foreign('storage_to')->references('id')
+                    ->on('storages')->onDelete('cascade');
             }
         );
     }

@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\StorageResource\Pages;
+use App\Filament\Resources\StorageResource\RelationManagers\AddressesRelationManager;
 use App\Models\Storage;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -28,7 +29,7 @@ class StorageResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
+                Forms\Components\TextInput::make('name')->label('Név')
                     ->maxLength(100),
             ]);
     }
@@ -37,9 +38,9 @@ class StorageResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('name')
+                Tables\Columns\TextColumn::make('name')->label('Név')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('created_at')
+                Tables\Columns\TextColumn::make('created_at')->label('Létrehozva')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -47,9 +48,6 @@ class StorageResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('deleted_at')
-                    ->dateTime()
-                    ->sortable(),
             ])
             ->filters([
                 //
@@ -67,7 +65,9 @@ class StorageResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressesRelationManager::class,
+            //RelationManagers\ProductsRelationManager::class,
+
         ];
     }
 

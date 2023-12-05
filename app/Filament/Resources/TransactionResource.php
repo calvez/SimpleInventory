@@ -4,12 +4,14 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\TransactionResource\Pages;
 use App\Models\Product;
+use App\Models\Storage as Raktar;
 use App\Models\Transaction;
 use Filament\Forms;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Table;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 use Illuminate\Support\Facades\DB;
@@ -36,10 +38,12 @@ class TransactionResource extends Resource
         return $form
             ->schema(
                 [
+                    Forms\Components\Select::make('storage_from')->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
+                    Forms\Components\Select::make('storage_to')->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
                     Forms\Components\TextInput::make('reference')
                         ->label('Azonosító')
                         ->maxLength(100)
-                        ->default('TRANS-'.date('Ymd').'-'.$last),
+                        ->default('TRANS-' . date('Ymd') . '-' . $last),
                     Forms\Components\DatePicker::make('date_of_trans')
                         ->label('Dátum')
                         ->default(now()),
@@ -51,7 +55,7 @@ class TransactionResource extends Resource
                             'in' => 'Bevétel',
                             'out' => 'Kiadás',
                         ]
-                    ),
+                    )->label('Típus'),
                     TableRepeater::make('items')
                         ->relationship('items')
                         ->schema(
@@ -76,12 +80,17 @@ class TransactionResource extends Resource
         return $table
             ->columns(
                 [
-                    Tables\Columns\TextColumn::make('reference')
-                        ->searchable(),
-                    Tables\Columns\TextColumn::make('created_at')
-                        ->dateTime()
-                        ->label('Dátum')
-                        ->sortable(),
+                    Tables\Columns\TextColumn::make('reference')->searchable()->label('Azonosító'),
+                    // Tables\Columns\TextColumn::make('storage_from')->searchable()->label('Raktárból'),
+                    // IconColumn::make('type')
+                    //     ->icon(
+                    //         fn (string $state): string => match ($state) {
+                    //             'in' => 'heroicon-o-arrow-left',
+                    //             'out' => 'heroicon-o-arrow-right',
+                    //         }
+                    //     ),
+                    // Tables\Columns\TextColumn::make('storage_to')->searchable()->label('Raktárba'),
+                    Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Dátum')->sortable(),
                 ]
             )
             ->filters(
