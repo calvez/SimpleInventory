@@ -43,7 +43,7 @@ class TransactionResource extends Resource
                     Forms\Components\TextInput::make('reference')
                         ->label('Azonosító')
                         ->maxLength(100)
-                        ->default('TRANS-' . date('Ymd') . '-' . $last),
+                        ->default('TRANS-'.date('Ymd').'-'.$last),
                     Forms\Components\DatePicker::make('date_of_trans')
                         ->label('Dátum')
                         ->default(now()),
