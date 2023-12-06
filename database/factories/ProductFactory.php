@@ -31,7 +31,7 @@ class ProductFactory extends Factory
             'product_category_id' => fake()->randomDigitNotNull(),
             'tax_id' => fake()->randomDigitNot(0),
             'min_store' => fake()->randomDigitNot(0),
-            'barecode' => fake()->randomNumber(5, true),
+            'barcode' => fake()->randomNumber(5, true),
             'vtsz' => fake()->randomNumber(5, true),
         ];
     }

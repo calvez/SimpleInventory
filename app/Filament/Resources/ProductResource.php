@@ -9,6 +9,7 @@ use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 
 class ProductResource extends Resource
@@ -46,35 +47,35 @@ class ProductResource extends Resource
                                                 ->numeric(),
                                             Forms\Components\TextInput::make('sku')
                                                 ->label('SKU')
-                                                ->maxLength(100)
-                                                ->default('text'),
+                                                ->required()
+                                                ->maxLength(100),
                                             Forms\Components\TextInput::make('name')
                                                 ->label('Név')
+                                                ->required()
                                                 ->maxLength(100),
                                             Forms\Components\TextInput::make('unit')
                                                 ->label('Mennyiség egység')
+                                                ->required()
                                                 ->maxLength(100)
                                                 ->default('db'),
                                             Forms\Components\TextInput::make('net_amount')
                                                 ->label('Nettó ár')
-                                                ->numeric()
-                                                ->default(123.45),
+                                                ->numeric(),
                                             Forms\Components\TextInput::make('gross_amount')
                                                 ->label('Bruttó ár')
-                                                ->numeric()
-                                                ->default(123.45),
+                                                ->numeric(),
                                             Forms\Components\TextInput::make('min_store')
                                                 ->label('Min. készlet')
                                                 ->numeric()
                                                 ->default(1),
-                                            Forms\Components\TextInput::make('barecode')
+                                            Forms\Components\TextInput::make('barcode')
                                                 ->label('Vonalkód')
-                                                ->maxLength(100)
-                                                ->default('text'),
+                                                ->maxLength(14)
+                                                ->required()
+                                                ->numeric(),
                                             Forms\Components\TextInput::make('vtsz')
                                                 ->label('VTSZ')
-                                                ->maxLength(100)
-                                                ->default('text'),
+                                                ->maxLength(100),
                                         ]
                                     )
                                     ->columns(2),
@@ -82,23 +83,25 @@ class ProductResource extends Resource
                         )
                         ->columnSpan(['lg' => fn (?Product $record) => $record === null ? 3 : 2]),
                     Forms\Components\Section::make()
-                        ->schema([
-                            Forms\Components\Placeholder::make('created_at')
-                                ->label('Készült')
-                                ->content(fn (Product $record): ?string => $record->created_at?->diffForHumans()),
+                        ->schema(
+                            [
+                                Forms\Components\Placeholder::make('created_at')
+                                    ->label('Készült')
+                                    ->content(fn (Product $record): ?string => $record->created_at?->diffForHumans()),
 
-                            Forms\Components\Placeholder::make('updated_at')
-                                ->label('Utolsó módosítás')
-                                ->content(fn (Product $record): ?string => $record->updated_at?->diffForHumans()),
-                            Forms\Components\Textarea::make('description')
-                                ->label('Leírás')
-                                ->maxLength(65535)
-                                ->columnSpanFull(),
-                            Forms\Components\Textarea::make('message')
-                                ->label('Megjegyzés')
-                                ->maxLength(65535)
-                                ->columnSpanFull(),
-                        ])
+                                Forms\Components\Placeholder::make('updated_at')
+                                    ->label('Utolsó módosítás')
+                                    ->content(fn (Product $record): ?string => $record->updated_at?->diffForHumans()),
+                                Forms\Components\Textarea::make('description')
+                                    ->label('Leírás')
+                                    ->maxLength(65535)
+                                    ->columnSpanFull(),
+                                Forms\Components\Textarea::make('message')
+                                    ->label('Megjegyzés')
+                                    ->maxLength(65535)
+                                    ->columnSpanFull(),
+                            ]
+                        )
                         ->columnSpan(['lg' => 1])
                         ->hidden(fn (?Product $record) => $record === null),
                 ]
@@ -122,6 +125,9 @@ class ProductResource extends Resource
                         ->numeric()
                         ->toggleable(isToggledHiddenByDefault: true)
                         ->sortable(),
+                    Tables\Columns\TextColumn::make('barcode')->label('Vonalkód')
+                        ->alignRight()
+                        ->searchable(),
                     Tables\Columns\TextColumn::make('sku')
                         ->label('SKU')
                         ->searchable(),
@@ -142,9 +148,6 @@ class ProductResource extends Resource
                         ->numeric()
                         ->alignRight()
                         ->sortable(),
-                    Tables\Columns\TextColumn::make('barecode')->label('Vonalkód')
-                        ->alignRight()
-                        ->searchable(),
                     Tables\Columns\TextColumn::make('vtsz')->label('VTSZ')
                         ->searchable()
                         ->toggleable(isToggledHiddenByDefault: true),

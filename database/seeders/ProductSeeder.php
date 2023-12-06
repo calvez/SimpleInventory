@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class ProductSeeder extends Seeder
 {
@@ -3561,6 +3562,19 @@ class ProductSeeder extends Seeder
 
             $category = ProductCategory::firstOrCreate(['name' => $a[6]]);
 
+            if (strlen($a[2]) == 14) {
+                try {
+                    $generator = new \Picqer\Barcode\BarcodeGeneratorJPG();
+                    $image = $generator->getBarcode($a[2], $generator::TYPE_EAN_13);
+                    Storage::put('barcodes/' . $a[2] . '.jpg', $image);
+                    $barcode_img = Storage::url($a[2]);
+                } catch (\Throwable $th) {
+                    //throw $th;
+                }
+            } else {
+                $barcode_img = null;
+            }
+
             $product = Product::updateOrCreate(
                 [
                     'name' => $a[4],
@@ -3574,7 +3588,8 @@ class ProductSeeder extends Seeder
                     'product_category_id' => $category->id,
                     'tax_id' => null,
                     'min_store' => 0,
-                    'barecode' => $a[2],
+                    'barcode' => $a[2],
+                    'barcode_img' => $barcode_img,
                     'vtsz' => null,
                 ]
             );

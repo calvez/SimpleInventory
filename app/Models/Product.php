@@ -25,7 +25,8 @@ class Product extends Model
         'product_category_id',
         'tax_id',
         'min_store',
-        'barecode',
+        'barcode',
+        'barcode_img',
         'vtsz',
     ];
 
@@ -35,7 +36,7 @@ class Product extends Model
         'min_store' => 'integer',
         'sku' => 'integer',
         'manufacturer_sku' => 'integer',
-        'barecode' => 'integer',
+        'barcode' => 'integer',
     ];
 
     /**

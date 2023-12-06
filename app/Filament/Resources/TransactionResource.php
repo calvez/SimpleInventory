@@ -12,6 +12,7 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\IconColumn;
+use Filament\Tables\Columns\ImageColumn;
 use Filament\Tables\Table;
 use Icetalker\FilamentTableRepeater\Forms\Components\TableRepeater;
 use Illuminate\Support\Facades\DB;
@@ -45,10 +46,12 @@ class TransactionResource extends Resource
                                     ->schema(
                                         [
                                             Forms\Components\Select::make('storage_from')
-                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan')
+                                                ->options(Raktar::pluck('name', 'id'))
+                                                ->label('Raktárból - honnan')
                                                 ->required(),
                                             Forms\Components\Select::make('storage_to')
-                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova')
+                                                ->options(Raktar::pluck('name', 'id'))
+                                                ->label('Raktárba - hova')
                                                 ->required(),
                                             Forms\Components\TextInput::make('reference')
                                                 ->label('Azonosító')
@@ -61,23 +64,26 @@ class TransactionResource extends Resource
                                             Forms\Components\TextInput::make('name')
                                                 ->label('Megjegyzés')
                                                 ->maxLength(100),
-                                            Forms\Components\Select::make('type')->options(
-                                                [
-                                                    'in' => 'Bevétel',
-                                                    'out' => 'Kiadás',
-                                                ]
-                                            )->label('Típus')
+                                            Forms\Components\Select::make('type')
+                                                ->options(
+                                                    [
+                                                        'in' => 'Bevétel',
+                                                        'out' => 'Kiadás',
+                                                    ]
+                                                )->label('Típus')
                                                 ->required(),
                                             TableRepeater::make('items')
                                                 ->relationship('items')
                                                 ->schema(
                                                     [
                                                         Select::make('product_id')
-                                                            ->label('Termék')->required()
+                                                            ->label('Termék')
+                                                            ->required()
                                                             ->options(Product::pluck('name', 'id'))
                                                             ->searchable(),
                                                         Forms\Components\TextInput::make('quantity')
-                                                            ->label('Mennyiség')->required()
+                                                            ->label('Mennyiség')
+                                                            ->required()
                                                             ->numeric(),
                                                     ]
                                                 )
@@ -96,11 +102,23 @@ class TransactionResource extends Resource
         return $table
             ->columns(
                 [
-                    Tables\Columns\TextColumn::make('reference')->searchable()->label('Azonosító'),
-                    Tables\Columns\TextColumn::make('storageFrom.name')->searchable()->label('Raktárból'),
-                    IconColumn::make('type')->icon('heroicon-o-arrow-right')->label('Típus')->sortable(),
-                    Tables\Columns\TextColumn::make('storageTo.name')->searchable()->label('Raktárba'),
-                    Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Dátum')->sortable(),
+                    Tables\Columns\TextColumn::make('reference')
+                        ->searchable()
+                        ->label('Azonosító'),
+                    Tables\Columns\TextColumn::make('storageFrom.name')
+                        ->searchable()
+                        ->label('Raktárból'),
+                    IconColumn::make('type')
+                        ->icon('heroicon-o-arrow-right')
+                        ->label('Típus')
+                        ->sortable(),
+                    Tables\Columns\TextColumn::make('storageTo.name')
+                        ->searchable()
+                        ->label('Raktárba'),
+                    Tables\Columns\TextColumn::make('created_at')
+                        ->dateTime()
+                        ->label('Dátum')
+                        ->sortable(),
                 ]
             )
             ->filters(

@@ -20,7 +20,7 @@ return new class extends Migration
      * 'product_category_id',
      * 'tax_id',
      * 'min_store',
-     * 'barecode',
+     * 'barcode',
      * 'vtsz',
      */
     public function up(): void
@@ -40,7 +40,8 @@ return new class extends Migration
                 $table->unsignedBiginteger('product_category_id')->nullable()->default(null);
                 $table->unsignedBiginteger('tax_id')->nullable()->default(null);
                 $table->integer('min_store')->unsigned()->nullable()->default(0);
-                $table->string('barecode', 100)->nullable()->default('text')->unique();
+                $table->string('barcode', 100)->nullable()->default('12345678912345')->unique();
+                $table->string('barcode_img', 255)->nullable()->default(null)->unique();
                 $table->string('vtsz', 100)->nullable()->default('text');
                 $table->timestamps();
                 $table->softDeletes();

@@ -171,6 +171,7 @@ return [
             App\Providers\Filament\AdminPanelProvider::class,
             App\Providers\RouteServiceProvider::class,
             'Webpatser\Countries\CountriesServiceProvider',
+            Milon\Barcode\BarcodeServiceProvider::class,
         ]
     )->toArray(),
 
@@ -189,6 +190,8 @@ return [
         [
             // 'Example' => App\Facades\Example::class,
             'Countries' => 'Webpatser\Countries\CountriesFacade',
+            'DNS1D' => Milon\Barcode\Facades\DNS1DFacade::class,
+            'DNS2D' => Milon\Barcode\Facades\DNS2DFacade::class,
         ]
     )->toArray(),
 
