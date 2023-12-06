@@ -30,9 +30,12 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors(
                 [
-                    'primary' => Color::Amber,
+                    'primary' => Color::Red,
                 ]
             )
+            ->brandName('Europa Logistic')
+            ->brandLogo(asset('images/eulogo.png'))
+            ->brandLogoHeight('4rem')
             ->maxContentWidth(MaxWidth::Full)
             ->sidebarCollapsibleOnDesktop()
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

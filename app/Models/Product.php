@@ -16,6 +16,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'sku',
+        'manufacturer_sku',
         'unit',
         'description',
         'message',
@@ -33,7 +34,7 @@ class Product extends Model
      */
     public function category(): BelongsTo
     {
-        return $this->belongsTo(ProductCategory::class);
+        return $this->belongsTo(ProductCategory::class, 'product_category_id', 'id');
     }
 
     // /**

@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\StorageResource\Pages;
 use App\Filament\Resources\StorageResource\RelationManagers\AddressesRelationManager;
+use App\Filament\Resources\StorageResource\RelationManagers\ProductsRelationManager;
 use App\Filament\Resources\StorageResource\RelationManagers\TransactionsRelationManager;
 use App\Models\Storage;
 use Filament\Forms;
@@ -80,6 +81,7 @@ class StorageResource extends Resource
     public static function getRelations(): array
     {
         return [
+            ProductsRelationManager::class,
             TransactionsRelationManager::class,
             AddressesRelationManager::class,
 

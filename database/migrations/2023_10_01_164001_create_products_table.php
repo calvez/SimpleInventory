@@ -8,6 +8,20 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
+     *
+     * 'name',
+     * 'sku',
+     * 'manufacturer_sku',
+     * 'unit',
+     * 'description',
+     * 'message',
+     * 'net_amount',
+     * 'gross_amount',
+     * 'product_category_id',
+     * 'tax_id',
+     * 'min_store',
+     * 'barecode',
+     * 'vtsz',
      */
     public function up(): void
     {
@@ -15,7 +29,8 @@ return new class extends Migration
             'products',
             function (Blueprint $table) {
                 $table->id();
-                $table->string('sku', 100)->nullable()->default('text');
+                $table->string('sku', 100)->nullable()->default('sku');
+                $table->string('manufacturer_sku', 100)->nullable()->default('manufacturer_sku');
                 $table->string('name', 100)->nullable()->default(null);
                 $table->text('description')->nullable()->default(null);
                 $table->text('message')->nullable()->default(null);
@@ -24,7 +39,7 @@ return new class extends Migration
                 $table->float('gross_amount')->nullable()->default(123.45);
                 $table->unsignedBiginteger('product_category_id')->nullable()->default(null);
                 $table->unsignedBiginteger('tax_id')->nullable()->default(null);
-                $table->integer('min_store')->unsigned()->nullable()->default(1);
+                $table->integer('min_store')->unsigned()->nullable()->default(0);
                 $table->string('barecode', 100)->nullable()->default('text');
                 $table->string('vtsz', 100)->nullable()->default('text');
                 $table->timestamps();

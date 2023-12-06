@@ -25,4 +25,14 @@ class Storage extends Model
     {
         return $this->hasMany(Transaction::class, 'storage_from', 'id');
     }
+
+    /**
+     * Get all of the products for the Storage
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(StorageProducts::class);
+    }
 }

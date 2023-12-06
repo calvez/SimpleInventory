@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ProductResource\Pages;
 use App\Models\Product;
+use App\Models\ProductCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -35,39 +36,43 @@ class ProductResource extends Resource
                                 Forms\Components\Section::make()
                                     ->schema(
                                         [
-                                            Forms\Components\Select::make('category.name'),
-                                            Forms\Components\TextInput::make('category.name')
-                                                ->numeric(),
+                                            Forms\Components\Select::make('product_category_id')
+                                                ->label('Kategória')
+                                                ->options(
+                                                    ProductCategory::pluck('name', 'id')
+                                                ),
                                             Forms\Components\TextInput::make('tax_id')
+                                                ->label('Adó')
                                                 ->numeric(),
                                             Forms\Components\TextInput::make('sku')
                                                 ->label('SKU')
                                                 ->maxLength(100)
                                                 ->default('text'),
                                             Forms\Components\TextInput::make('name')
+                                                ->label('Név')
                                                 ->maxLength(100),
-                                            Forms\Components\Textarea::make('description')
-                                                ->maxLength(65535)
-                                                ->columnSpanFull(),
-                                            Forms\Components\Textarea::make('message')
-                                                ->maxLength(65535)
-                                                ->columnSpanFull(),
                                             Forms\Components\TextInput::make('unit')
+                                                ->label('Mennyiség egység')
                                                 ->maxLength(100)
                                                 ->default('db'),
                                             Forms\Components\TextInput::make('net_amount')
+                                                ->label('Nettó ár')
                                                 ->numeric()
                                                 ->default(123.45),
                                             Forms\Components\TextInput::make('gross_amount')
+                                                ->label('Bruttó ár')
                                                 ->numeric()
                                                 ->default(123.45),
                                             Forms\Components\TextInput::make('min_store')
+                                                ->label('Min. készlet')
                                                 ->numeric()
                                                 ->default(1),
                                             Forms\Components\TextInput::make('barecode')
+                                                ->label('Vonalkód')
                                                 ->maxLength(100)
                                                 ->default('text'),
                                             Forms\Components\TextInput::make('vtsz')
+                                                ->label('VTSZ')
                                                 ->maxLength(100)
                                                 ->default('text'),
                                         ]
@@ -79,12 +84,20 @@ class ProductResource extends Resource
                     Forms\Components\Section::make()
                         ->schema([
                             Forms\Components\Placeholder::make('created_at')
-                                ->label('Created at')
+                                ->label('Készült')
                                 ->content(fn (Product $record): ?string => $record->created_at?->diffForHumans()),
 
                             Forms\Components\Placeholder::make('updated_at')
-                                ->label('Last modified at')
+                                ->label('Utolsó módosítás')
                                 ->content(fn (Product $record): ?string => $record->updated_at?->diffForHumans()),
+                            Forms\Components\Textarea::make('description')
+                                ->label('Leírás')
+                                ->maxLength(65535)
+                                ->columnSpanFull(),
+                            Forms\Components\Textarea::make('message')
+                                ->label('Megjegyzés')
+                                ->maxLength(65535)
+                                ->columnSpanFull(),
                         ])
                         ->columnSpan(['lg' => 1])
                         ->hidden(fn (?Product $record) => $record === null),
@@ -103,41 +116,50 @@ class ProductResource extends Resource
         return $table
             ->columns(
                 [
-                    Tables\Columns\TextColumn::make('category')
-                        ->numeric()
+                    Tables\Columns\TextColumn::make('category.name')->label('Kategória')
                         ->sortable(),
-                    Tables\Columns\TextColumn::make('tax_id')
+                    Tables\Columns\TextColumn::make('tax_id')->label('Adó')
                         ->numeric()
+                        ->toggleable(isToggledHiddenByDefault: true)
                         ->sortable(),
                     Tables\Columns\TextColumn::make('sku')
                         ->label('SKU')
                         ->searchable(),
-                    Tables\Columns\TextColumn::make('name')
+                    Tables\Columns\TextColumn::make('name')->label('Név')
                         ->searchable(),
-                    Tables\Columns\TextColumn::make('unit')
-                        ->searchable(),
-                    Tables\Columns\TextColumn::make('net_amount')
+                    Tables\Columns\TextColumn::make('unit')->label('Mértékegység')
+                        ->searchable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                    Tables\Columns\TextColumn::make('net_amount')->label('Nettó ár')
+                        ->alignRight()
                         ->numeric()
                         ->sortable(),
-                    Tables\Columns\TextColumn::make('gross_amount')
+                    Tables\Columns\TextColumn::make('gross_amount')->label('Bruttó ár')
                         ->numeric()
+                        ->alignRight()
                         ->sortable(),
-                    Tables\Columns\TextColumn::make('min_store')
+                    Tables\Columns\TextColumn::make('min_store')->label('Min. készlet')
                         ->numeric()
+                        ->alignRight()
                         ->sortable(),
-                    Tables\Columns\TextColumn::make('barecode')
+                    Tables\Columns\TextColumn::make('barecode')->label('Vonalkód')
+                        ->alignRight()
                         ->searchable(),
-                    Tables\Columns\TextColumn::make('vtsz')
-                        ->searchable(),
-                    Tables\Columns\TextColumn::make('created_at')
+                    Tables\Columns\TextColumn::make('vtsz')->label('VTSZ')
+                        ->searchable()
+                        ->toggleable(isToggledHiddenByDefault: true),
+                    Tables\Columns\TextColumn::make('created_at')->label('Létrehozva')
+                        ->alignRight()
                         ->dateTime()
                         ->sortable()
                         ->toggleable(isToggledHiddenByDefault: true),
-                    Tables\Columns\TextColumn::make('updated_at')
+                    Tables\Columns\TextColumn::make('updated_at')->label('Módosítva')
+                        ->alignRight()
                         ->dateTime()
                         ->sortable()
                         ->toggleable(isToggledHiddenByDefault: true),
-                    Tables\Columns\TextColumn::make('deleted_at')
+                    Tables\Columns\TextColumn::make('deleted_at')->label('Törölve')
+                        ->alignRight()
                         ->dateTime()
                         ->sortable(),
                 ]

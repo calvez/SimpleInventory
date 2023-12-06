@@ -41,5 +41,11 @@ return [
     */
 
     'default_filesystem_disk' => env('FILAMENT_FILESYSTEM_DISK', 'public'),
-
+    'widgets' => [
+        // ...
+        'default' => [
+            'account' => false, // Disables the account widget.
+            'info' => false, // Disables the info widget.
+        ],
+    ],
 ];

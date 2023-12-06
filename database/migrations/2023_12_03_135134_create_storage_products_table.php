@@ -15,16 +15,20 @@ return new class extends Migration
             'storage_products',
             function (Blueprint $table) {
                 $table->id();
-                $table->foreignId('storage_id')->constrained();
-                $table->foreignId('product_id')->constrained();
+                $table->unsignedBiginteger('storage_id')->nullable();
+                $table->unsignedBiginteger('product_id')->nullable();
                 $table->integer('quantity');
                 $table->integer('min_quantity');
                 $table->integer('max_quantity');
                 $table->integer('reorder_quantity');
                 $table->integer('reorder_days');
-                $table->integer('reorder_level');
-                $table->integer('reorder_level_days');
                 $table->timestamps();
+
+                $table->foreign('storage_id')->references('id')
+                    ->on('storages')->onDelete('cascade');
+
+                $table->foreign('product_id')->references('id')
+                    ->on('products')->onDelete('cascade');
             }
         );
     }

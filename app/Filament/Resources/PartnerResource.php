@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\PartnerResource\Pages;
+use App\Filament\Resources\PartnerResource\RelationManagers\AddressesRelationManager;
 use App\Models\Partner;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -93,7 +94,7 @@ class PartnerResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressesRelationManager::class,
         ];
     }
 

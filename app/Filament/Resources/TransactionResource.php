@@ -38,39 +38,49 @@ class TransactionResource extends Resource
         return $form
             ->schema(
                 [
-                    Forms\Components\Select::make('storage_from')->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
-                    Forms\Components\Select::make('storage_to')->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
-                    Forms\Components\TextInput::make('reference')
-                        ->label('Azonosító')
-                        ->maxLength(100)
-                        ->default('TRANS-'.date('Ymd').'-'.$last),
-                    Forms\Components\DatePicker::make('date_of_trans')
-                        ->label('Dátum')
-                        ->default(now()),
-                    Forms\Components\TextInput::make('name')->label('megjegyzés')
-                        ->label('Megjegyzés')
-                        ->maxLength(100),
-                    Forms\Components\Select::make('type')->options(
-                        [
-                            'in' => 'Bevétel',
-                            'out' => 'Kiadás',
-                        ]
-                    )->label('Típus'),
-                    TableRepeater::make('items')
-                        ->relationship('items')
+                    Forms\Components\Section::make()
                         ->schema(
                             [
-                                Select::make('product_id')
-                                    ->label('Termék')
-                                    ->options(Product::pluck('name', 'id'))
-                                    ->searchable(),
-                                Forms\Components\TextInput::make('quantity')
-                                    ->label('Mennyiség')
-                                    ->numeric(),
+                                Forms\Components\Grid::make()
+                                    ->schema(
+                                        [
+                                            Forms\Components\Select::make('storage_from')->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
+                                            Forms\Components\Select::make('storage_to')->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
+                                            Forms\Components\TextInput::make('reference')
+                                                ->label('Azonosító')
+                                                ->maxLength(100)
+                                                ->default('TRANS-' . date('Ymd') . '-' . $last),
+                                            Forms\Components\DatePicker::make('date_of_trans')
+                                                ->label('Dátum')
+                                                ->default(now()),
+                                            Forms\Components\TextInput::make('name')->label('megjegyzés')
+                                                ->label('Megjegyzés')
+                                                ->maxLength(100),
+                                            Forms\Components\Select::make('type')->options(
+                                                [
+                                                    'in' => 'Bevétel',
+                                                    'out' => 'Kiadás',
+                                                ]
+                                            )->label('Típus'),
+                                            TableRepeater::make('items')
+                                                ->relationship('items')
+                                                ->schema(
+                                                    [
+                                                        Select::make('product_id')
+                                                            ->label('Termék')
+                                                            ->options(Product::pluck('name', 'id'))
+                                                            ->searchable(),
+                                                        Forms\Components\TextInput::make('quantity')
+                                                            ->label('Mennyiség')
+                                                            ->numeric(),
+                                                    ]
+                                                )
+                                                ->collapsible()
+                                                ->defaultItems(3),
+                                        ]
+                                    )->columnSpan(['lg' => 2]),
                             ]
-                        )
-                        ->collapsible()
-                        ->defaultItems(3),
+                        ),
                 ]
             );
     }
@@ -81,15 +91,9 @@ class TransactionResource extends Resource
             ->columns(
                 [
                     Tables\Columns\TextColumn::make('reference')->searchable()->label('Azonosító'),
-                    // Tables\Columns\TextColumn::make('storage_from')->searchable()->label('Raktárból'),
-                    // IconColumn::make('type')
-                    //     ->icon(
-                    //         fn (string $state): string => match ($state) {
-                    //             'in' => 'heroicon-o-arrow-left',
-                    //             'out' => 'heroicon-o-arrow-right',
-                    //         }
-                    //     ),
-                    // Tables\Columns\TextColumn::make('storage_to')->searchable()->label('Raktárba'),
+                    Tables\Columns\TextColumn::make('storageFrom.name')->searchable()->label('Raktárból'),
+                    IconColumn::make('type')->icon('heroicon-o-arrow-right')->label('Típus')->sortable(),
+                    Tables\Columns\TextColumn::make('storageTo.name')->searchable()->label('Raktárba'),
                     Tables\Columns\TextColumn::make('created_at')->dateTime()->label('Dátum')->sortable(),
                 ]
             )

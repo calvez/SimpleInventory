@@ -32,8 +32,16 @@ class Transaction extends Model
     /**
      * Get the storage that owns the Transaction
      */
-    public function raktar(): BelongsTo
+    public function storageFrom(): BelongsTo
     {
-        return $this->belongsTo(Raktar::class);
+        return $this->belongsTo(Raktar::class, 'storage_from', 'id');
+    }
+
+    /**
+     * Get the storage that owns the Transaction
+     */
+    public function storageTo(): BelongsTo
+    {
+        return $this->belongsTo(Raktar::class, 'storage_to', 'id');
     }
 }

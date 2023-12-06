@@ -29,4 +29,17 @@ class PartnerFactory extends Factory
             'eu_vat_number' => fake()->randomNumber(5, true),
         ];
     }
+
+    public function attachAddress(): static
+    {
+        return $this->addAddress(
+            [
+                'street' => 'Példa utca 123',
+                'city' => 'Budapest',
+                'post_code' => '1110',
+                'country' => 'HU', // ISO-3166-2 or ISO-3166-3 country code
+                'is_primary' => true, // optional flag
+            ]
+        );
+    }
 }

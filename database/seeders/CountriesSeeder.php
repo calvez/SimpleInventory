@@ -19,7 +19,7 @@ class CountriesSeeder extends Seeder
         DB::table(\Config::get('countries.table_name'))->delete();
 
         //Get all of the countries
-        $countryModel = new Countries();
+        $countryModel = new Countries;
         $countries = $countryModel->getList();
         foreach ($countries as $countryId => $country) {
             DB::table(\Config::get('countries.table_name'))->insert([

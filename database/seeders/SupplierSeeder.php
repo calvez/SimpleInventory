@@ -15,6 +15,16 @@ class SupplierSeeder extends Seeder
      */
     public function run(): void
     {
-        Supplier::factory()->count(25)->create();
+        Supplier::factory()->count(1)->create();
+        $s = Supplier::first();
+        $s->addAddress(
+            [
+                'street' => 'Példa utca 123',
+                'city' => 'Hamburg',
+                'post_code' => '1110',
+                'country' => 'DE', // ISO-3166-2 or ISO-3166-3 country code
+                'is_primary' => true, // optional flag
+            ]
+        );
     }
 }
