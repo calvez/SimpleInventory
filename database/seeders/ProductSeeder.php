@@ -3561,7 +3561,7 @@ class ProductSeeder extends Seeder
 
             $category = ProductCategory::firstOrCreate(['name' => $a[6]]);
 
-            DB::table('products')->insert(
+            $product = Product::updateOrCreate(
                 [
                     'name' => $a[4],
                     'sku' => $a[2],

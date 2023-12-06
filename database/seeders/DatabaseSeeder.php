@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
                 StorageSeeder::class,
                 TransactionCategorySeeder::class,
                 TransactionSeeder::class,
+                TransactionItemSeeder::class,
                 ContactSeeder::class,
                 UserSeeder::class,
             ]

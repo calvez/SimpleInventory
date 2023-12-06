@@ -28,8 +28,6 @@ class Storage extends Model
 
     /**
      * Get all of the products for the Storage
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function products(): HasMany
     {

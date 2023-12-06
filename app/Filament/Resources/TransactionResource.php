@@ -28,6 +28,7 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationLabel = 'Tranzakciók';
 
+
     public static function form(Form $form): Form
     {
         $lastq = DB::table('transactions')
@@ -104,6 +105,7 @@ class TransactionResource extends Resource
             )
             ->actions(
                 [
+                    Tables\Actions\ViewAction::make(),
                     Tables\Actions\EditAction::make(),
                 ]
             )

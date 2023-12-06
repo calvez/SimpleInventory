@@ -40,7 +40,7 @@ return new class extends Migration
                 $table->unsignedBiginteger('product_category_id')->nullable()->default(null);
                 $table->unsignedBiginteger('tax_id')->nullable()->default(null);
                 $table->integer('min_store')->unsigned()->nullable()->default(0);
-                $table->string('barecode', 100)->nullable()->default('text');
+                $table->string('barecode', 100)->nullable()->default('text')->unique();
                 $table->string('vtsz', 100)->nullable()->default('text');
                 $table->timestamps();
                 $table->softDeletes();
