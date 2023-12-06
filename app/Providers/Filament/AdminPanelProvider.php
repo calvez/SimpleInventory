@@ -33,6 +33,7 @@ class AdminPanelProvider extends PanelProvider
                     'primary' => Color::Red,
                 ]
             )
+            ->darkMode(false)
             ->brandName('Europa Logistic')
             ->brandLogo(asset('images/eulogo.png'))
             ->brandLogoHeight('4rem')
