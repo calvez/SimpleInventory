@@ -8,4 +8,9 @@ use Filament\Resources\Pages\CreateRecord;
 class CreateStorage extends CreateRecord
 {
     protected static string $resource = StorageResource::class;
+
+    protected function getRedirectUrl(): string
+    {
+        return $this->previousUrl ?? $this->getResource()::getUrl('index');
+    }
 }

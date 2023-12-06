@@ -45,7 +45,6 @@ class StorageResource extends Resource
                 [
                     Tables\Columns\TextColumn::make('name')->label('Név')
                         ->searchable()
-                        ->description(fn (Storage $record): string => $record->getPrimaryAddress()->getHtml())
                         ->html(),
                     Tables\Columns\TextColumn::make('created_at')->label('Létrehozva')
                         ->dateTime()
