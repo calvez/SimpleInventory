@@ -29,6 +29,15 @@ class Product extends Model
         'vtsz',
     ];
 
+    protected $casts = [
+        'net_amount' => 'float',
+        'gross_amount' => 'float',
+        'min_store' => 'integer',
+        'sku' => 'integer',
+        'manufacturer_sku' => 'integer',
+        'barecode' => 'integer',
+    ];
+
     /**
      * Get the category that owns the Product
      */
