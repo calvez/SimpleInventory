@@ -45,14 +45,17 @@ class TransactionResource extends Resource
                                     ->schema(
                                         [
                                             Forms\Components\Select::make('storage_from')
-                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
+                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan')
+                                                ->required(),
                                             Forms\Components\Select::make('storage_to')
-                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
+                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova')
+                                                ->required(),
                                             Forms\Components\TextInput::make('reference')
                                                 ->label('Azonosító')
                                                 ->maxLength(100)
-                                                ->default('TRANS-'.date('Ymd').'-'.$last),
+                                                ->default('TRANS-' . date('Ymd') . '-' . $last),
                                             Forms\Components\DatePicker::make('date_of_trans')
+                                                ->required()
                                                 ->label('Dátum')
                                                 ->default(now()),
                                             Forms\Components\TextInput::make('name')
@@ -63,17 +66,18 @@ class TransactionResource extends Resource
                                                     'in' => 'Bevétel',
                                                     'out' => 'Kiadás',
                                                 ]
-                                            )->label('Típus'),
+                                            )->label('Típus')
+                                                ->required(),
                                             TableRepeater::make('items')
                                                 ->relationship('items')
                                                 ->schema(
                                                     [
                                                         Select::make('product_id')
-                                                            ->label('Termék')
+                                                            ->label('Termék')->required()
                                                             ->options(Product::pluck('name', 'id'))
                                                             ->searchable(),
                                                         Forms\Components\TextInput::make('quantity')
-                                                            ->label('Mennyiség')
+                                                            ->label('Mennyiség')->required()
                                                             ->numeric(),
                                                     ]
                                                 )
