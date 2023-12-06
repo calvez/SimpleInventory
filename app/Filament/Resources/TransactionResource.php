@@ -28,7 +28,6 @@ class TransactionResource extends Resource
 
     protected static ?string $navigationLabel = 'Tranzakciók';
 
-
     public static function form(Form $form): Form
     {
         $lastq = DB::table('transactions')
@@ -45,16 +44,18 @@ class TransactionResource extends Resource
                                 Forms\Components\Grid::make()
                                     ->schema(
                                         [
-                                            Forms\Components\Select::make('storage_from')->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
-                                            Forms\Components\Select::make('storage_to')->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
+                                            Forms\Components\Select::make('storage_from')
+                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárból - honnan'),
+                                            Forms\Components\Select::make('storage_to')
+                                                ->options(Raktar::pluck('name', 'id'))->label('Raktárba - hova'),
                                             Forms\Components\TextInput::make('reference')
                                                 ->label('Azonosító')
                                                 ->maxLength(100)
-                                                ->default('TRANS-' . date('Ymd') . '-' . $last),
+                                                ->default('TRANS-'.date('Ymd').'-'.$last),
                                             Forms\Components\DatePicker::make('date_of_trans')
                                                 ->label('Dátum')
                                                 ->default(now()),
-                                            Forms\Components\TextInput::make('name')->label('megjegyzés')
+                                            Forms\Components\TextInput::make('name')
                                                 ->label('Megjegyzés')
                                                 ->maxLength(100),
                                             Forms\Components\Select::make('type')->options(
