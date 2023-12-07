@@ -3562,18 +3562,18 @@ class ProductSeeder extends Seeder
 
             $category = ProductCategory::firstOrCreate(['name' => $a[6]]);
 
-            if (strlen($a[2]) == 14) {
-                try {
-                    $generator = new \Picqer\Barcode\BarcodeGeneratorJPG();
-                    $image = $generator->getBarcode($a[2], $generator::TYPE_EAN_13);
-                    Storage::put('barcodes/' . $a[2] . '.jpg', $image);
-                    $barcode_img = Storage::url($a[2]);
-                } catch (\Throwable $th) {
-                    //throw $th;
-                }
-            } else {
-                $barcode_img = null;
-            }
+            // if (strlen($a[2]) == 14) {
+            //     try {
+            //         $generator = new \Picqer\Barcode\BarcodeGeneratorJPG();
+            //         $image = $generator->getBarcode($a[2], $generator::TYPE_EAN_13);
+            //         Storage::put('barcodes/' . $a[2] . '.jpg', $image);
+            //         $barcode_img = Storage::url($a[2]);
+            //     } catch (\Throwable $th) {
+            //         //throw $th;
+            //     }
+            // } else {
+            $barcode_img = null;
+            //}
 
             $product = Product::updateOrCreate(
                 [
