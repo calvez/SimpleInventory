@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
                 DefaultUserSeeder::class,
                 CountriesSeeder::class,
                 AddressSeeder::class,
-                TaxSeeder::class,
+                // TaxSeeder::class,
                 PartnerCategorySeeder::class,
                 PartnerSeeder::class,
                 SupplierSeeder::class,
