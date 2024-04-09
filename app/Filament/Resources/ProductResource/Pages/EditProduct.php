@@ -20,12 +20,12 @@ class EditProduct extends EditRecord
     }
 
 
-    protected function afterSave(): void
-    {
-        $image = Storage::disk('public')
-            ->put('test.png', base64_decode(DNS2D::getBarcodePNGPath($this->data['barcode'], "QRCODE")));
-        $url = Storage::url($image);
-        $this->data['barcode_img'] = $url;
-        dd($this->data);
-    }
+    // protected function afterSave(): void
+    // {
+    //     $image = Storage::disk('public')
+    //         ->put('test.png', base64_decode(DNS2D::getBarcodePNGPath($this->data['barcode'], "QRCODE")));
+    //     $url = Storage::url($image);
+    //     $this->data['barcode_img'] = $url;
+    //     dd($this->data);
+    // }
 }
