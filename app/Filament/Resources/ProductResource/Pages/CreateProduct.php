@@ -13,14 +13,14 @@ class CreateProduct extends CreateRecord
 {
     protected static string $resource = ProductResource::class;
 
-    protected function mutateFormDataBeforeCreate(array $data): array
-    {
-
-        $file = DNS1D::getBarcodeSVG('123', "C39", 1, 25, '#2A3239');
-        $image = Storage::put('barcodes/test.png', base64_decode($file));
-        $url = Storage::url($image);
-        $this->data['barcode_img'] = $url;
-
-        return $data;
-    }
+    //    protected function mutateFormDataBeforeCreate(array $data): array
+    //    {
+    //
+    //        $file = DNS1D::getBarcodeSVG('123', "C39", 1, 25, '#2A3239');
+    //        $image = Storage::put('barcodes/test.png', base64_decode($file));
+    //        $url = Storage::url($image);
+    //        $this->data['barcode_img'] = $url;
+    //
+    //        return $data;
+    //    }
 }
