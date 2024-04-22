@@ -30,7 +30,7 @@ class AdminPanelProvider extends PanelProvider
             ->login()
             ->colors(
                 [
-                    'primary' => Color::Red,
+                    'primary' => Color::Slate,
                 ]
             )
             ->darkMode(false)
