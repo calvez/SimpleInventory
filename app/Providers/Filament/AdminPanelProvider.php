@@ -34,8 +34,8 @@ class AdminPanelProvider extends PanelProvider
                 ]
             )
             ->darkMode(false)
-            ->brandName('Europa Logistic')
-            ->brandLogo(asset('images/eulogo.png'))
+            ->brandName('Vasmarok')
+            ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('4rem')
             ->maxContentWidth(MaxWidth::Full)
             ->sidebarCollapsibleOnDesktop()
