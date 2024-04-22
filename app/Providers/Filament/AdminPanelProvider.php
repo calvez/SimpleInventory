@@ -34,7 +34,7 @@ class AdminPanelProvider extends PanelProvider
                 ]
             )
             ->darkMode(false)
-            ->brandName('Vasmarok')
+            ->brandName('Integram')
             ->brandLogo(asset('images/logo.png'))
             ->brandLogoHeight('4rem')
             ->maxContentWidth(MaxWidth::Full)
